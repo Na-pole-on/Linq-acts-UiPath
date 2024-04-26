@@ -1,0 +1,93 @@
+﻿{
+  "Metadata": {
+    "Id": "b72293a7-9927-42fe-a30f-5ce6342f48c3",
+    "Kind": "FormIo"
+  },
+  "DesignProperties": {
+    "Title": "1C_StartData",
+    "Theme": "Default",
+    "ShowInTaskbar": true,
+    "ShowMargin": true,
+    "CustomStyle": ""
+  },
+  "Data": {
+    "components": [
+      {
+        "label": "Start date",
+        "hideInputLabels": false,
+        "inputsLabelPosition": "top",
+        "tableView": false,
+        "fields": {
+          "day": {
+            "hide": false
+          },
+          "month": {
+            "hide": false
+          },
+          "year": {
+            "hide": false
+          }
+        },
+        "key": "startDate",
+        "type": "day",
+        "input": true
+      },
+      {
+        "label": "Finish date",
+        "hideInputLabels": false,
+        "inputsLabelPosition": "top",
+        "tableView": false,
+        "fields": {
+          "day": {
+            "hide": false
+          },
+          "month": {
+            "hide": false
+          },
+          "year": {
+            "hide": false
+          }
+        },
+        "key": "FinishDate",
+        "type": "day",
+        "input": true
+      },
+      {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {
+          "values": [
+            {
+              "label": "Жаркие изделия ООО",
+              "value": "7799745640"
+            },
+            {
+              "label": "Иванов И.И. ИП",
+              "value": "612200076042"
+            },
+            {
+              "label": "Инспекция Федеральной налоговой службы № 99 по г. Москве",
+              "value": "7799074222"
+            },
+            {
+              "label": "Филиал 1 ГУ - регионального отделения ФСС РФ по Республике Коми",
+              "value": "1101471495"
+            }
+          ]
+        },
+        "key": "IIN",
+        "type": "select",
+        "input": true
+      },
+      {
+        "type": "button",
+        "label": "Submit",
+        "key": "submit",
+        "disableOnInvalid": true,
+        "input": true,
+        "tableView": false
+      }
+    ]
+  }
+}

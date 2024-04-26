@@ -1,0 +1,43 @@
+﻿{
+  "Metadata": {
+    "Id": "1cd9e8e9-53a5-4a67-a2d3-f81c81469353",
+    "Kind": "FormIo"
+  },
+  "DesignProperties": {
+    "Title": "Project_FormNextSteps",
+    "Width": 500,
+    "Height": 300,
+    "Theme": "Default",
+    "ShowInTaskbar": true,
+    "ShowMargin": true,
+    "CustomStyle": ""
+  },
+  "Data": {
+    "components": [
+      {
+        "content": "Do you want to launch 1C?",
+        "key": "label",
+        "input": false,
+        "tableView": false,
+        "label": "Label",
+        "type": "label"
+      },
+      {
+        "label": "Checkbox",
+        "tableView": false,
+        "defaultValue": false,
+        "key": "bool_NextStep",
+        "type": "checkbox",
+        "input": true
+      },
+      {
+        "type": "button",
+        "label": "Submit",
+        "key": "submit",
+        "disableOnInvalid": true,
+        "input": true,
+        "tableView": false
+      }
+    ]
+  }
+}

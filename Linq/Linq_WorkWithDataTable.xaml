@@ -1,0 +1,258 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Linq_WorkWithDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_dt_first" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_dt_second" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>860,2005.6</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Linq_WorkWithDataTable_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xml.ReaderWriter</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="592,1940.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInFirst" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInSecond" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNot" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_disagreementAmountForFirst" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_processing_fail" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_disagreementAmountForSecond" />
+      <Variable x:TypeArguments="x:String" Name="str_path" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:BuildDataTable DataTable="[dt_IsHaveNot]" DisplayName="Build datatable for adding" sap:VirtualizedContainerService.HintSize="529.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_6" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;position&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;id&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;doc_number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;skazka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;skazka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;disagreement_amount&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <Assign DisplayName="Getting acts from the first sheet that are not in the second" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInFirst]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_first.AsEnumerable().Except((From row_1 In in_dt_first.AsEnumerable()
+Join row_2 In in_dt_second.AsEnumerable().Reverse()
+On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+Select row_1)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Getting acts from the second sheet that are not in the first" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInSecond]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_second.AsEnumerable().Except((From row_2 In in_dt_second.AsEnumerable()
+Join row_1 In in_dt_first.AsEnumerable()
+On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+Select row_2)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.IndexOf(row) + 13, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(3).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, row(2).ToString(), "", "", row(6).ToString(), row(7).ToString(), "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Receiving acts whose difference differs from the first one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_11">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_disagreementAmountForFirst]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
+From row_2 In in_dt_second.AsEnumerable()
+Where If(String.IsNullOrEmpty(row_1(2).ToString()), (Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, (Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
+Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
+Select dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row_1) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row_1(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row_1(2).ToString()), "0", row_1(2).ToString()), If(String.IsNullOrEmpty(row_1(3).ToString()), "0", row_1(3).ToString()), row_2(5).ToString(), row_2(6).ToString(), If(String.IsNullOrEmpty(row_1(2).ToString()), Math.Abs(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())), Math.Abs(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString()))), "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Receiving acts whose difference differs from second the one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_17">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_disagreementAmountForSecond]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
+From row_2 In in_dt_second.AsEnumerable()
+Where If(String.IsNullOrEmpty(row_1(2).ToString()), (Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, (Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
+Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
+Select row_2).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.IndexOf(row) + 13, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[dt_processing_fail]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
+Where String.IsNullOrEmpty(row_1(4).ToString())).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был обработан")).CopyToDataTable()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xlsx" Folder="[in_Config(&quot;TempFolder&quot;).ToString()]" sap:VirtualizedContainerService.HintSize="529.6,959.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX.Body>
+        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+          <ActivityAction.Argument1>
+            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
+          </ActivityAction.Argument1>
+          <ActivityAction.Argument2>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+          </ActivityAction.Argument2>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,696" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign DisplayName="Getting the path to the result file" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_18">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[str_path]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[Path.Combine("Result", "Result (" + DateTime.Now.ToString("ddMMyyyy HHmmss") + ").xlsx")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[str_path]" DisplayName="Copy act to Result" sap:VirtualizedContainerService.HintSize="433.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[file.ToString().Replace(&quot;~$&quot;, &quot;&quot;)]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CopyFile>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[dt_processing_fail]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForFirst]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInFirst]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">First</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[Nothing]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForSecond]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInSecond]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachFileX.Body>
+    </ui:ForEachFileX>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_fillingInTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="529.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Excel\Excel_fillingInTemplate.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInFirst">[dt_IsHaveNotInFirst]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInSecond">[dt_IsHaveNotInSecond]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_disagreementAmount">[dt_disagreementAmountForFirst]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>

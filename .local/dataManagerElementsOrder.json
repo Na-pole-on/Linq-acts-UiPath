@@ -1,0 +1,144 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_second&Sequence_1",
+        "dt_first&Sequence_1",
+        "bool_NextStep&Sequence_1",
+        "str_result&Sequence_1",
+        "Config&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "1C/1C_WorkWith1C.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "date_finishDate&Sequence_1",
+        "date_startDate&Sequence_1",
+        "str_counterparty&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Project/KillAllProcesses.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "list_processesToKill&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Project/InitAllSettings.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_SettingsAndConstants&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ConfigFile",
+        "in_ConfigSheets",
+        "out_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Project/CloseAllApplications.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Linq/Linq_WorkWithExcel.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "int_footer&Sequence_8",
+        "bool_isColumnEmpty&Sequence_15",
+        "i&Sequence_8",
+        "dt_excelFile&Sequence_8",
+        "int_header&Sequence_8"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_str_sheet",
+        "out_dt_dtExcel",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Linq/Linq_WorkWithDataTable.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_path&Sequence_1",
+        "dt_disagreementAmountForSecond&Sequence_1",
+        "dt_disagreementAmountForFirst&Sequence_1",
+        "dt_processing_fail&Sequence_1",
+        "dt_IsHaveNotInSecond&Sequence_1",
+        "dt_IsHaveNot&Sequence_1",
+        "dt_IsHaveNotInFirst&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_dt_second",
+        "in_dt_first",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Excel/Excel_PaintCell.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "i&Sequence_1",
+        "str_path&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_str_path",
+        "in_str_sheet",
+        "in_dt_toRed",
+        "in_dt_toYellow",
+        "in_dt_toGray"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Excel/Excel_fillingInTemplate.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_sheet&Sequence_5",
+        "int_start&Sequence_1",
+        "str_path&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config",
+        "in_dt_disagreementAmount",
+        "in_dt_haveNotInSecond",
+        "in_dt_haveNotInFirst"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}
