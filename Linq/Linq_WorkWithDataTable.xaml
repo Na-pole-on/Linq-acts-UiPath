@@ -139,11 +139,24 @@
         <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInFirst]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_first.AsEnumerable().Except((From row_1 In in_dt_first.AsEnumerable()
-Join row_2 In in_dt_second.AsEnumerable().Reverse()
-On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
-Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
-Select row_1)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_first.AsEnumerable() _
+	.Except((From row_1 In in_dt_first.AsEnumerable()
+				Join row_2 In in_dt_second.AsEnumerable().Reverse()
+				On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals  _
+					  DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+					  Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
+					  Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+				Select row_1)) _
+	.Select(Function(row) dt_IsHaveNot.Rows.Add( _
+																										in_dt_first.Rows.IndexOf(row) + 10, _
+																										dt_IsHaveNot.Rows.Count.ToString, _
+																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
+																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																									    "", "", "", _
+																										"объект не был найден в другом документе")) _
+	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign DisplayName="Getting acts from the second sheet that are not in the first" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_12">
@@ -151,11 +164,25 @@ Select row_1)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_first.Rows.Index
         <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInSecond]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_second.AsEnumerable().Except((From row_2 In in_dt_second.AsEnumerable()
-Join row_1 In in_dt_first.AsEnumerable()
-On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
-Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
-Select row_2)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.IndexOf(row) + 13, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(3).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, row(2).ToString(), "", "", row(6).ToString(), row(7).ToString(), "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_second.AsEnumerable() _
+	.Except((From row_2 In in_dt_second.AsEnumerable()
+				 Join row_1 In in_dt_first.AsEnumerable()
+				 On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals _
+				       DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+					   Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
+					   Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+				 Select row_2)) _
+	.Select(Function(row) dt_IsHaveNot.Rows.Add(
+																				in_dt_second.Rows.IndexOf(row) + 13, _
+																				dt_IsHaveNot.Rows.Count.ToString, _
+																				Regex.Match(row(3).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																				row(2).ToString(), _
+																				"", "", _
+																				row(6).ToString(), _
+																				row(7).ToString(), _
+																				"", _
+																				"объект не был найден в другом документе")) _
+	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign DisplayName="Receiving acts whose difference differs from the first one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_11">
@@ -164,11 +191,28 @@ Select row_2)).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.Inde
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
-From row_2 In in_dt_second.AsEnumerable()
-Where If(String.IsNullOrEmpty(row_1(2).ToString()), (Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, (Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
-Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
-DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
-Select dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row_1) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row_1(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row_1(2).ToString()), "0", row_1(2).ToString()), If(String.IsNullOrEmpty(row_1(3).ToString()), "0", row_1(3).ToString()), row_2(5).ToString(), row_2(6).ToString(), If(String.IsNullOrEmpty(row_1(2).ToString()), Math.Abs(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())), Math.Abs(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString()))), "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+	From row_2 In in_dt_second.AsEnumerable()
+	Where If(String.IsNullOrEmpty(row_1(2).ToString()), _
+					(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, _
+					(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
+				Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
+				Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+				DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
+				DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) _
+	Select dt_IsHaveNot.Rows.Add( _
+														in_dt_first.Rows.IndexOf(row_1) + 10, _
+														dt_IsHaveNot.Rows.Count.ToString, _
+														Regex.Match(row_1(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+														Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+														If(String.IsNullOrEmpty(row_1(2).ToString()), "0", row_1(2).ToString()), _
+														If(String.IsNullOrEmpty(row_1(3).ToString()), "0", row_1(3).ToString()), _
+														row_2(5).ToString(), _
+														row_2(6).ToString(), _
+														If(String.IsNullOrEmpty(row_1(2).ToString()), _
+															Math.Abs(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())), _
+															Math.Abs(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString()))), _
+														"объект не был найден в другом документе")) _
+	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign DisplayName="Receiving acts whose difference differs from second the one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_17">
@@ -177,11 +221,25 @@ Select dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row_1) + 10, dt_IsHaveNot.
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
-From row_2 In in_dt_second.AsEnumerable()
-Where If(String.IsNullOrEmpty(row_1(2).ToString()), (Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, (Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
-Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
-DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
-Select row_2).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.IndexOf(row) + 13, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был найден в другом документе")).CopyToDataTable()]</InArgument>
+	From row_2 In in_dt_second.AsEnumerable()
+	Where If(String.IsNullOrEmpty(row_1(2).ToString()), _
+					(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, _
+					(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
+				Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
+				Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+				DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
+				DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
+	Select row_2) _
+						 .Select(Function(row) dt_IsHaveNot.Rows.Add( _
+																										in_dt_second.Rows.IndexOf(row) + 13, _
+																										dt_IsHaveNot.Rows.Count.ToString, _
+																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
+																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																										"", "", "", _
+																										"объект не был найден в другом документе")) _
+	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
     <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
@@ -190,7 +248,16 @@ Select row_2).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_second.Rows.Index
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
-Where String.IsNullOrEmpty(row_1(4).ToString())).Select(Function(row) dt_IsHaveNot.Rows.Add(in_dt_first.Rows.IndexOf(row) + 10, dt_IsHaveNot.Rows.Count.ToString, Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), "", "", "", "объект не был обработан")).CopyToDataTable()]</InArgument>
+Where String.IsNullOrEmpty(row_1(4).ToString())) _
+																				.Select(Function(row) dt_IsHaveNot.Rows.Add(
+																																							in_dt_first.Rows.IndexOf(row) + 10, _
+																																							dt_IsHaveNot.Rows.Count.ToString, _
+																																							Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																																							Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+																																							If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
+																																							If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																																							"", "", "", "объект не был обработан")) _
+.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
     <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xlsx" Folder="[in_Config(&quot;TempFolder&quot;).ToString()]" sap:VirtualizedContainerService.HintSize="529.6,959.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
