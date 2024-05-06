@@ -12,6 +12,13 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "str_paintingInFirst&Sequence_1",
+        "str_paintingInSecond&Sequence_1",
+        "int_startDataInTemplate&Sequence_1",
+        "int_startDataInSecond&Sequence_1",
+        "int_startDataInFirst&Sequence_1",
+        "dt_template&Sequence_1",
+        "list_actFiles&Sequence_1",
         "dt_second&Sequence_1",
         "dt_first&Sequence_1",
         "bool_NextStep&Sequence_1",
@@ -26,6 +33,7 @@
       "Path": "1C/1C_WorkWith1C.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "str_document&Sequence_1",
         "date_finishDate&Sequence_1",
         "date_startDate&Sequence_1",
         "str_counterparty&Sequence_1"
@@ -69,16 +77,26 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Linq/Linq_WorkWithExcel.xaml",
+      "Path": "Linq/Linq_WorkWithExcelFirstSheet.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "int_footer&Sequence_8",
-        "bool_isColumnEmpty&Sequence_15",
-        "i&Sequence_8",
-        "dt_excelFile&Sequence_8",
-        "int_header&Sequence_8"
+        "int_indexDate&Sequence_1",
+        "bool_isDate&Sequence_24",
+        "list_actFiles&Sequence_1",
+        "int_company&Sequence_1",
+        "int_date&Sequence_1",
+        "str_nameOfColumn&Sequence_1",
+        "dt_result&Sequence_1",
+        "list_nameOfCompany&Sequence_1",
+        "dt_columns&Sequence_1",
+        "dt_data&Sequence_1",
+        "i&Sequence_1",
+        "int_header&Sequence_1",
+        "dt_excelFile&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "out_str_paintingInFirst",
+        "out_int_startData",
         "in_str_sheet",
         "out_dt_dtExcel",
         "in_Config"
@@ -90,6 +108,7 @@
       "Path": "Linq/Linq_WorkWithDataTable.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "str_file&Sequence_1",
         "str_path&Sequence_1",
         "dt_disagreementAmountForSecond&Sequence_1",
         "dt_disagreementAmountForFirst&Sequence_1",
@@ -99,6 +118,12 @@
         "dt_IsHaveNotInFirst&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_str_paintingInSecond",
+        "in_str_paintingInFirst",
+        "in_int_startDataInTemplate",
+        "in_startDataInSecond",
+        "in_startDataInFirst",
+        "io_dt_template",
         "in_dt_second",
         "in_dt_first",
         "in_Config"
@@ -114,6 +139,8 @@
         "str_path&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_str_paintingSecond",
+        "in_str_paintingFirst",
         "in_str_path",
         "in_str_sheet",
         "in_dt_toRed",
@@ -127,15 +154,96 @@
       "Path": "Excel/Excel_fillingInTemplate.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "str_sheet&Sequence_5",
-        "int_start&Sequence_1",
+        "str_sheet&Sequence_1",
+        "str_file&Sequence_1",
         "str_path&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_int_startDataInTemplate",
         "in_Config",
         "in_dt_disagreementAmount",
         "in_dt_haveNotInSecond",
         "in_dt_haveNotInFirst"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Project/Project_ClearEmptyColumns.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "bool_isColumnEmpty&Sequence_5"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "i",
+        "dt_datatable"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Linq/Linq_WorkWithExcelSecondSheet.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_nameOfColumn&Sequence_1",
+        "int_debet&Sequence_1",
+        "int_company&Sequence_1",
+        "bool_isCompany&Sequence_2",
+        "bool_isDate&Sequence_2",
+        "list_nameOfCompany&Sequence_1",
+        "dt_columns&Sequence_1",
+        "dt_data&Sequence_1",
+        "int_indexData&Sequence_1",
+        "i&Sequence_1",
+        "int_header&Sequence_1",
+        "dt_excelFile&Sequence_1",
+        "dt_result&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_str_paintingInSecond",
+        "out_int_startData",
+        "in_str_sheet",
+        "out_dt_dtExcel",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Linq/Linq_GetTemplatesTable.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "bool_isDate&Sequence_2",
+        "dr_columns_2&Sequence_1",
+        "dr_columns_1&Sequence_1",
+        "int_debet&Sequence_1",
+        "int_indexData&Sequence_1",
+        "int_header&Sequence_1",
+        "i&Sequence_1",
+        "dt_result&Sequence_1",
+        "dt_excelFile&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_int_startData",
+        "in_str_sheet",
+        "out_dt_dtExcel",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Project/Project_GetPainting.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "int_indexColumn&Sequence_1",
+        "bool_isColumn&Sequence_1",
+        "i&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_str_paintingIndex",
+        "in_str_columnName",
+        "in_dt_table"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

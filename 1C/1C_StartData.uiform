@@ -53,30 +53,25 @@
         "input": true
       },
       {
-        "label": "Select",
+        "label": "Write сounterparty",
+        "tableView": true,
+        "key": "counterparty",
+        "type": "textfield",
+        "input": true
+      },
+      {
+        "label": "Select the document type",
         "widget": "choicesjs",
         "tableView": true,
         "data": {
           "values": [
             {
-              "label": "Жаркие изделия ООО",
-              "value": "7799745640"
-            },
-            {
-              "label": "Иванов И.И. ИП",
-              "value": "612200076042"
-            },
-            {
-              "label": "Инспекция Федеральной налоговой службы № 99 по г. Москве",
-              "value": "7799074222"
-            },
-            {
-              "label": "Филиал 1 ГУ - регионального отделения ФСС РФ по Республике Коми",
-              "value": "1101471495"
+              "label": "Основной договор",
+              "value": "Основной договор"
             }
           ]
         },
-        "key": "IIN",
+        "key": "document",
         "type": "select",
         "input": true
       },

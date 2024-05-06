@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="860,1712" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="860,1613.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -44,6 +44,7 @@
       <x:String>UiPath.Platform.GlobalVariables</x:String>
       <x:String>UiPath.Forms.Activities.Base</x:String>
       <x:String>System.Security</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -117,22 +118,36 @@
       <AssemblyReference>UiPath.Forms.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="472.8,1647.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="496,1548.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="Config" />
       <Variable x:TypeArguments="x:String" Name="str_result" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_NextStep" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_first" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_second" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="list_actFiles" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_template" />
+      <Variable x:TypeArguments="x:Int32" Name="int_startDataInFirst" />
+      <Variable x:TypeArguments="x:Int32" Name="int_startDataInSecond" />
+      <Variable x:TypeArguments="x:Int32" Name="int_startDataInTemplate" />
+      <Variable x:TypeArguments="x:String" Name="str_paintingInSecond" />
+      <Variable x:TypeArguments="x:String" Name="str_paintingInFirst" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InitAllSettings.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Project\InitAllSettings.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization of the project" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Project\InitAllSettings.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[{"Settings","Constants"}]</InArgument>
@@ -145,12 +160,12 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="KillAllProcesses.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Project\KillAllProcesses.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Closing all projects" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Project\KillAllProcesses.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ufa:ShowFormActivity Height="{x:Null}" InstanceName="{x:Null}" ShowInTaskbar="{x:Null}" ShowMargin="{x:Null}" Title="{x:Null}" TopMost="{x:Null}" Width="{x:Null}" WindowState="{x:Null}" DisplayName="Show Form" FormId="1cd9e8e9-53a5-4a67-a2d3-f81c81469353" sap:VirtualizedContainerService.HintSize="410.4,187.2" sap2010:WorkflowViewState.IdRef="ShowFormActivity_4" IsAsync="False">
+    <ufa:ShowFormActivity Height="{x:Null}" InstanceName="{x:Null}" ShowInTaskbar="{x:Null}" ShowMargin="{x:Null}" Title="{x:Null}" TopMost="{x:Null}" Width="{x:Null}" WindowState="{x:Null}" DisplayName="A form for choosing further actions" FormId="1cd9e8e9-53a5-4a67-a2d3-f81c81469353" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="ShowFormActivity_6" IsAsync="False">
       <ufa:ShowFormActivity.Arguments>
         <OutArgument x:TypeArguments="x:Boolean" x:Key="bool_NextStep">[bool_NextStep]</OutArgument>
       </ufa:ShowFormActivity.Arguments>
@@ -164,11 +179,17 @@
           <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="390" />
         </InArgument>
       </ufa:ShowFormActivity.Top>
-    </ufa:ShowFormActivity>
-    <If Condition="[bool_NextStep]" sap:VirtualizedContainerService.HintSize="410.4,386.4" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ufa:ShowFormActivity>
+    <If Condition="[bool_NextStep]" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="If_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -179,7 +200,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="1C\1C_WorkWith1C.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1C\1C_WorkWith1C.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Working with 1C" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="1C\1C_WorkWith1C.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <scg:Dictionary x:TypeArguments="x:String, Argument" />
             </ui:InvokeWorkflowFile.Arguments>
@@ -196,28 +217,123 @@
         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9" />
       </If.Else>
     </If>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Linq\Linq_WorkWithExcel.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcel.xaml">
+    <Assign DisplayName="Getting files from In " sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="scg:List(x:String)">[list_actFiles]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[Directory.GetFiles(Config("InFolder").ToString(), "*Акты*.xlsx") _
+.Where(Function(str_path) str_path.Contains("~$") = False).ToList()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_actFiles]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="file" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376.8,244.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:CopyFile ContinueOnError="True" Destination="[Path.Combine(Environment.CurrentDirectory, Config(&quot;TempFolder&quot;).ToString())]" DisplayName="Copy Acts to Temp" sap:VirtualizedContainerService.HintSize="333.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[file]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CopyFile>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting data from the first sheet" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcelFirstSheet.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
         <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">[dt_first]</OutArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">First</InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">[int_startDataInFirst]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="BreakTriggerScopeInArgument" />
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_paintingInFirst">[str_paintingInFirst]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Linq\Linq_WorkWithExcel.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcel.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting data from the second sheet" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcelSecondSheet.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">[dt_second]</OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+        </InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">
+          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_second" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
+          <Literal x:TypeArguments="x:String">Second</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="BreakTriggerScopeInArgument" />
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="int_startDataInSecond" />
+        </OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_paintingInSecond">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_paintingInSecond" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Linq\Linq_WorkWithDataTable.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithDataTable.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting a template" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Linq\Linq_GetTemplatesTable.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_first">[dt_first]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_second">[dt_second]</InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+        </InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">
+          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_template" />
+        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
+          <Literal x:TypeArguments="x:String">ПРОТОКОЛ</Literal>
+        </InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">
+          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="int_startDataInTemplate" />
+        </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CloseAllApplications.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="410.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Project\CloseAllApplications.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Receiving and entering data" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithDataTable.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_first">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_first" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_second">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_second" />
+        </InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_template">
+          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_template" />
+        </InOutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInFirst">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInSecond">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInSecond" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInTemplate" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInFirst">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_paintingInFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInSecond">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_paintingInSecond" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting the result data and entering it" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Project\CloseAllApplications.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>

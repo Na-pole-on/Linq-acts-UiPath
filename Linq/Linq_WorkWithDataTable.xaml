@@ -1,13 +1,19 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Linq_WorkWithDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Linq_WorkWithDataTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_dt_first" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dt_second" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="io_dt_template" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="in_startDataInFirst" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_startDataInSecond" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_int_startDataInTemplate" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_str_paintingInFirst" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_paintingInSecond" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,2005.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,1939.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Linq_WorkWithDataTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,7 +124,7 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="592,1940.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="496,1874.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInFirst" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInSecond" />
@@ -127,14 +133,15 @@
       <Variable x:TypeArguments="sd:DataTable" Name="dt_processing_fail" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_disagreementAmountForSecond" />
       <Variable x:TypeArguments="x:String" Name="str_path" />
+      <Variable x:TypeArguments="x:String" Name="str_file" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BuildDataTable DataTable="[dt_IsHaveNot]" DisplayName="Build datatable for adding" sap:VirtualizedContainerService.HintSize="529.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_6" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;position&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;id&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;doc_number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;skazka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;skazka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;disagreement_amount&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <Assign DisplayName="Getting acts from the first sheet that are not in the second" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_9">
+    <ui:BuildDataTable DataTable="[dt_IsHaveNot]" DisplayName="Build datatable for adding" sap:VirtualizedContainerService.HintSize="433.6,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_6" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;position&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;id&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;doc_number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;skazka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;skazka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_debit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;romashka_credit&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;disagreement_amount&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <Assign DisplayName="Getting acts from the first sheet that are not in the second" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_9">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInFirst]</OutArgument>
       </Assign.To>
@@ -142,14 +149,14 @@
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_first.AsEnumerable() _
 	.Except((From row_1 In in_dt_first.AsEnumerable()
 				Join row_2 In in_dt_second.AsEnumerable().Reverse()
-				On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals  _
-					  DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
-					  Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
-					  Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+				On DateTime.ParseExact(Regex.Match(row_1.Field(Of String)("Документ - Сказка").Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals  _
+					  DateTime.ParseExact(row_2.Field(Of String)("Дата документа").ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+					  Regex.Match(row_1.Field(Of String)("Документ - Сказка"), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
+					  Regex.Match(row_2.Field(Of String)("Номер документа"), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
 				Select row_1)) _
-	.Select(Function(row) dt_IsHaveNot.Rows.Add( _
-																										in_dt_first.Rows.IndexOf(row) + 10, _
-																										dt_IsHaveNot.Rows.Count.ToString, _
+	.Select(Function(row) io_dt_template.Rows.Add( _
+																										in_dt_first.Rows.IndexOf(row) + in_startDataInFirst, _
+																										io_dt_template.Rows.Count.ToString, _
 																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
 																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
 																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
@@ -159,7 +166,7 @@
 	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Getting acts from the second sheet that are not in the first" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_12">
+    <Assign DisplayName="Getting acts from the second sheet that are not in the first" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_12">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_IsHaveNotInSecond]</OutArgument>
       </Assign.To>
@@ -167,90 +174,91 @@
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_dt_second.AsEnumerable() _
 	.Except((From row_2 In in_dt_second.AsEnumerable()
 				 Join row_1 In in_dt_first.AsEnumerable()
-				 On DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals _
-				       DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
-					   Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
-					   Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
+				 On DateTime.ParseExact(Regex.Match(row_1.Field(Of String)("Документ - Сказка").Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) Equals _
+				       DateTime.ParseExact(row_2.Field(Of String)("Дата документа"), "dd.MM.yyyy", CultureInfo.InvariantCulture) And 
+					   Regex.Match(row_1.Field(Of String)("Документ - Сказка"), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value Equals _
+					   Regex.Match(row_2.Field(Of String)("Номер документа"), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value
 				 Select row_2)) _
-	.Select(Function(row) dt_IsHaveNot.Rows.Add(
-																				in_dt_second.Rows.IndexOf(row) + 13, _
-																				dt_IsHaveNot.Rows.Count.ToString, _
-																				Regex.Match(row(3).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
-																				row(2).ToString(), _
-																				"", "", _
-																				row(6).ToString(), _
-																				row(7).ToString(), _
-																				"", _
-																				"объект не был найден в другом документе")) _
+	.Select(Function(row) io_dt_template.Rows.Add( _
+																										in_dt_second.Rows.IndexOf(row) + in_startDataInSecond, _
+																										io_dt_template.Rows.Count.ToString(), _
+																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
+																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																									    "", "", "", _
+																										"объект не был найден в другом документе")) _
 	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Receiving acts whose difference differs from the first one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_11">
+    <Assign DisplayName="Receiving acts whose difference differs from the first one" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_11">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_disagreementAmountForFirst]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
 	From row_2 In in_dt_second.AsEnumerable()
-	Where If(String.IsNullOrEmpty(row_1(2).ToString()), _
-					(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, _
-					(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
-				Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
-				Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
-				DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
-				DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) _
-	Select dt_IsHaveNot.Rows.Add( _
-														in_dt_first.Rows.IndexOf(row_1) + 10, _
-														dt_IsHaveNot.Rows.Count.ToString, _
-														Regex.Match(row_1(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
-														Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
-														If(String.IsNullOrEmpty(row_1(2).ToString()), "0", row_1(2).ToString()), _
-														If(String.IsNullOrEmpty(row_1(3).ToString()), "0", row_1(3).ToString()), _
-														row_2(5).ToString(), _
-														row_2(6).ToString(), _
-														If(String.IsNullOrEmpty(row_1(2).ToString()), _
-															Math.Abs(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())), _
-															Math.Abs(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString()))), _
-														"объект не был найден в другом документе")) _
+	Where If(String.IsNullOrEmpty(row_1("Дебет - Сказка").ToString()), _
+					(Double.Parse(row_2("Дебет - Ромашка").ToString()) - Double.Parse(row_1("Кредит - Сказка").ToString())) &lt;&gt; 0, _
+					(Double.Parse(row_2("Кредит - Ромашка").ToString()) - Double.Parse(row_1("Дебет - Сказка").ToString())) &lt;&gt; 0) And _
+				Regex.Match(row_1("Документ - Сказка").ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
+				Regex.Match(row_2("Номер документа").ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+				DateTime.ParseExact(Regex.Match(row_1("Документ - Сказка").ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
+				DateTime.ParseExact(row_2("Дата документа").ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) _
+	Select io_dt_template.Rows.Add( _
+														in_dt_first.Rows.IndexOf(row_1) + in_startDataInFirst,
+														io_dt_template.Rows.Count.ToString, _
+														Regex.Match(row_1("Документ - Сказка").ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+														Regex.Match(row_1("Документ - Сказка").ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+														If(String.IsNullOrEmpty(row_1("Кредит - Сказка").ToString()), "0", row_1("Кредит - Сказка").ToString()), _
+														If(String.IsNullOrEmpty(row_1("Дебет - Сказка").ToString()), "0", row_1("Дебет - Сказка").ToString()), _
+														row_2("Дебет - Ромашка").ToString(), _
+														row_2("Кредит - Ромашка").ToString(), _
+														If(String.IsNullOrEmpty(row_1("Дебет - Сказка").ToString()), _
+															Math.Abs(Double.Parse(row_2("Дебет - Ромашка").ToString()) - Double.Parse(row_1("Кредит - Сказка").ToString())), _
+															Math.Abs(Double.Parse(row_2("Кредит - Ромашка").ToString()) - Double.Parse(row_1("Дебет - Сказка").ToString()))), _
+														"разница сумм не равно нулю")) _
 	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Receiving acts whose difference differs from second the one" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_17">
+    <Assign DisplayName="Receiving acts whose difference differs from second the one" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_17">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_disagreementAmountForSecond]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
 	From row_2 In in_dt_second.AsEnumerable()
-	Where If(String.IsNullOrEmpty(row_1(2).ToString()), _
-					(Double.Parse(row_2(5).ToString()) - Double.Parse(row_1(3).ToString())) &lt;&gt; 0, _
-					(Double.Parse(row_2(6).ToString()) - Double.Parse(row_1(2).ToString())) &lt;&gt; 0) And _
-				Regex.Match(row_1(1).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
-				Regex.Match(row_2(3).ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
-				DateTime.ParseExact(Regex.Match(row_1(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
-				DateTime.ParseExact(row_2(2).ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture)
+	Where If(String.IsNullOrEmpty(row_1("Дебет - Сказка").ToString()), _
+					(Double.Parse(row_2("Дебет - Ромашка").ToString()) - Double.Parse(row_1("Кредит - Сказка").ToString())) &lt;&gt; 0, _
+					(Double.Parse(row_2("Кредит - Ромашка").ToString()) - Double.Parse(row_1("Дебет - Сказка").ToString())) &lt;&gt; 0) And _
+				Regex.Match(row_1("Документ - Сказка").ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value = _
+				Regex.Match(row_2("Номер документа").ToString(), "((?&lt;=СФ1-0)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value And _
+				DateTime.ParseExact(Regex.Match(row_1("Документ - Сказка").ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, "dd.MM.yyyy", CultureInfo.InvariantCulture) = _
+				DateTime.ParseExact(row_2("Дата документа").ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture) _
 	Select row_2) _
-						 .Select(Function(row) dt_IsHaveNot.Rows.Add( _
-																										in_dt_second.Rows.IndexOf(row) + 13, _
-																										dt_IsHaveNot.Rows.Count.ToString, _
-																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
-																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
-																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
-																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
-																										"", "", "", _
-																										"объект не был найден в другом документе")) _
+							.Select(Function(row) io_dt_template.Rows.Add( _
+														in_dt_second.Rows.IndexOf(row) + in_startDataInSecond,
+														io_dt_template.Rows.Count.ToString)) _
 	.CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="529.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <ui:RemoveDataRow Row="{x:Null}" DataTable="[io_dt_template]" DisplayName="Deleting a previously added line" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[io_dt_template.Rows.Count - 1]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataRow>
+    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_processing_fail]</OutArgument>
       </Assign.To>
       <Assign.Value>
         <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[(From row_1 In in_dt_first.AsEnumerable()
-Where String.IsNullOrEmpty(row_1(4).ToString())) _
+Where row_1("Документ - Сказка").ToString().Contains("Корректировка")) _
 																				.Select(Function(row) dt_IsHaveNot.Rows.Add(
-																																							in_dt_first.Rows.IndexOf(row) + 10, _
+																																							in_dt_first.Rows.IndexOf(row) + in_startDataInFirst, _
 																																							dt_IsHaveNot.Rows.Count.ToString, _
 																																							Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
 																																							Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
@@ -260,65 +268,92 @@ Where String.IsNullOrEmpty(row_1(4).ToString())) _
 .CopyToDataTable()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Filter="*.xlsx" Folder="[in_Config(&quot;TempFolder&quot;).ToString()]" sap:VirtualizedContainerService.HintSize="529.6,959.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-      <ui:ForEachFileX.Body>
-        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-          <ActivityAction.Argument1>
-            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
-          </ActivityAction.Argument1>
-          <ActivityAction.Argument2>
-            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-          </ActivityAction.Argument2>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,696" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Getting the path to the result file" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_18">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[str_path]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[Path.Combine("Result", "Result (" + DateTime.Now.ToString("ddMMyyyy HHmmss") + ").xlsx")]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[str_path]" DisplayName="Copy act to Result" sap:VirtualizedContainerService.HintSize="433.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[file.ToString().Replace(&quot;~$&quot;, &quot;&quot;)]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:CopyFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[dt_processing_fail]</InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForFirst]</InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInFirst]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">First</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[Nothing]</InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForSecond]</InArgument>
-                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInSecond]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachFileX.Body>
-    </ui:ForEachFileX>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_fillingInTemplate.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="529.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Excel\Excel_fillingInTemplate.xaml">
+    <ui:RemoveDataRow Row="{x:Null}" DataTable="[io_dt_template]" DisplayName="Deleting a previously added line" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataRow_2" RowIndex="[io_dt_template.Rows.Count - 1]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataRow>
+    <Assign DisplayName="Getting the path to the result file" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_18">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_path]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Path.Combine("Result", "Result (" + DateTime.Now.ToString("ddMMyyyy HHmmss") + ").xlsx")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_19">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_file]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(in_Config("TempFolder").ToString(), "*Шаблон*.xlsx") _
+	.Where(Function(path) path.Contains("~$") = False).FirstOrDefault()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[str_path]" DisplayName="Copy act to Result" sap:VirtualizedContainerService.HintSize="433.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[str_file]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CopyFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInFirst">[dt_IsHaveNotInFirst]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInSecond">[dt_IsHaveNotInSecond]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_disagreementAmount">[dt_disagreementAmountForFirst]</InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_processing_fail" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_disagreementAmountForFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
+          <Literal x:TypeArguments="x:String">First</Literal>
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_path">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_path" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingFirst">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_str_paintingInFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingSecond">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_str_paintingInSecond" />
+        </InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[Nothing]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForSecond]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInSecond]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingFirst">[in_str_paintingInFirst]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingSecond">[in_str_paintingInSecond]</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Adding data" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Excel\Excel_fillingInTemplate.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInFirst">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInSecond">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInSecond" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_disagreementAmount">
+          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_disagreementAmountForFirst" />
+        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">
+          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_int_startDataInTemplate" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

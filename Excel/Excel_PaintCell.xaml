@@ -5,11 +5,13 @@
     <x:Property Name="in_dt_toRed" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_str_sheet" Type="InArgument(x:String)" />
     <x:Property Name="in_str_path" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_paintingFirst" Type="InArgument(x:String)" />
+    <x:Property Name="in_str_paintingSecond" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,2356.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,2231.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Excel_PaintCell_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,7 +120,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Excel_PaintCell" sap:VirtualizedContainerService.HintSize="819.2,2292" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Excel_PaintCell" sap:VirtualizedContainerService.HintSize="819.2,2166.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_path" />
       <Variable x:TypeArguments="x:Int32" Default="1" Name="i" />
@@ -128,45 +130,45 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="756.8,2180" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="756.8,2054.4" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="723.2,2093.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="723.2,1968" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="660.8,1981.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_str_path]">
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="660.8,1856" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ResizeWindow="None" WorkbookPath="[in_str_path]">
               <ueab:ExcelApplicationCard.Body>
                 <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="627.2,1712" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="627.2,1586.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[in_dt_toRed.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,183.2" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If Condition="[in_dt_toRed.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,52.8" sap2010:WorkflowViewState.IdRef="If_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="454.4,550.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.2,460.8" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_dt_toRed.Rows]">
+                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_dt_toRed.Rows]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
                                 <ActivityAction.Argument>
@@ -180,16 +182,16 @@
                                   </sap:WorkflowViewStateService.ViewState>
                                   <If Condition="[in_str_sheet = &quot;First&quot;]" sap:VirtualizedContainerService.HintSize="334.4,183.2" sap2010:WorkflowViewState.IdRef="If_6">
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="377.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_22">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Red]" DisplayName="Paint the first sheet red" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_3" Range="[&quot;C&quot; + row(0).ToString() + &quot;:D&quot; + row(0).ToString()]" SheetName="[in_str_sheet]">
+                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Red]" DisplayName="Paint the first sheet red" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_3" Range="[in_str_paintingFirst + row(0).ToString()]" SheetName="[in_str_sheet]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
@@ -197,16 +199,16 @@
                                       </Sequence>
                                     </If.Then>
                                     <If.Else>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="377.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_23">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Red]" DisplayName="Paint the second sheet red" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_8" Range="[&quot;D&quot; + row(0).ToString() + &quot;:E&quot; + row(0).ToString()]" SheetName="[in_str_sheet]">
+                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Red]" DisplayName="Paint the second sheet red" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_8" Range="[in_str_paintingSecond + row(0).ToString()]" SheetName="[in_str_sheet]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
@@ -219,7 +221,7 @@
                             </ui:ForEach.Body>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
@@ -230,38 +232,50 @@
                         <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11" />
                       </If.Else>
                     </If>
-                    <If Condition="[in_dt_toGray.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,183.2" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If Condition="[in_dt_toGray.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,52.8" sap2010:WorkflowViewState.IdRef="If_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
                       <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="454.4,775.2" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <Sequence sap:VirtualizedContainerService.HintSize="377.6,420" sap2010:WorkflowViewState.IdRef="Sequence_13">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="411.2,685.6" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[in_dt_toGray.Rows]">
+                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="334.4,330.4" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[in_dt_toGray.Rows]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="377.6,497.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_12">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <If Condition="[in_str_sheet = &quot;First&quot;]" sap:VirtualizedContainerService.HintSize="334.4,408" sap2010:WorkflowViewState.IdRef="If_4">
+                                  <If Condition="[in_str_sheet = &quot;First&quot;]" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="If_4">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="377.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Gray]" DisplayName="Paint the first sheet gray" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_4" Range="[&quot;C&quot; + row(0).ToString() + &quot;:D&quot; + row(0).ToString()]" SheetName="[in_str_sheet]">
+                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Gray]" DisplayName="Paint the first sheet gray" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_4" Range="[in_str_paintingFirst + row(0).ToString()]" SheetName="[in_str_sheet]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
@@ -291,41 +305,47 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_14" />
-                      </If.Else>
-                    </If>
-                    <If Condition="[in_dt_toYellow.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,1153.6" sap2010:WorkflowViewState.IdRef="If_3">
-                      <If.Then>
-                        <Sequence sap:VirtualizedContainerService.HintSize="531.2,970.4" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_14">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="488,880.8" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[in_dt_toYellow.Rows]">
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <If Condition="[in_dt_toYellow.Rows.Count &gt; 0]" sap:VirtualizedContainerService.HintSize="564.8,1288.8" sap2010:WorkflowViewState.IdRef="If_3">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="531.2,1105.6" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="488,1016" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[in_dt_toYellow.Rows]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="sd:DataRow">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="454.4,692.8" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="454.4,828" sap2010:WorkflowViewState.IdRef="Sequence_15">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <If Condition="[in_str_sheet = &quot;First&quot;]" sap:VirtualizedContainerService.HintSize="411.2,603.2" sap2010:WorkflowViewState.IdRef="If_5">
+                                  <If Condition="[in_str_sheet = &quot;First&quot;]" sap:VirtualizedContainerService.HintSize="411.2,738.4" sap2010:WorkflowViewState.IdRef="If_5">
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="300,142.4" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="377.6,277.6" sap2010:WorkflowViewState.IdRef="Sequence_20">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Yellow]" DisplayName="Paint the first sheet yellow" sap:VirtualizedContainerService.HintSize="256.8,52.8" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_5" Range="[&quot;C&quot; + row(0).ToString() + &quot;:D&quot; + row(0).ToString()]" SheetName="[in_str_sheet]">
+                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Yellow]" DisplayName="Paint the first sheet yellow" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_5" Range="[in_str_paintingFirst + row(0).ToString()]" SheetName="[in_str_sheet]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                             </scg:Dictionary>
                                           </sap:WorkflowViewStateService.ViewState>
@@ -339,7 +359,7 @@
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Yellow]" DisplayName="Paint the first sheet yellow" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_7" Range="[&quot;D&quot; + row(0).ToString() + &quot;:E&quot; + row(0).ToString()]" SheetName="[in_str_sheet]">
+                                        <ui:ExcelSetRangeColor Color="[System.Drawing.Color.Yellow]" DisplayName="Paint the first sheet yellow" sap:VirtualizedContainerService.HintSize="334.4,188" sap2010:WorkflowViewState.IdRef="ExcelSetRangeColor_7" Range="[in_str_paintingSecond + row(0).ToString()]" SheetName="[in_str_sheet]">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -363,7 +383,13 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_17" />
+                        <Sequence sap:VirtualizedContainerService.HintSize="300,82.4" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
                       </If.Else>
                     </If>
                   </Sequence>

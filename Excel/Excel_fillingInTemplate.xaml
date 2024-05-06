@@ -1,14 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Excel_fillingInTemplate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Excel_fillingInTemplate" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_dt_haveNotInFirst" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dt_haveNotInSecond" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dt_disagreementAmount" Type="InArgument(sd:DataTable)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_int_startDataInTemplate" Type="InArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,1848</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,1323.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Excel_fillingInTemplate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -118,100 +119,76 @@
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Excel_fillingInTemplate" sap:VirtualizedContainerService.HintSize="668.8,1783.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Excel_fillingInTemplate" sap:VirtualizedContainerService.HintSize="496,1258.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_path" />
-      <Variable x:TypeArguments="x:Int32" Default="14" Name="int_start" />
+      <Variable x:TypeArguments="x:String" Name="str_file" />
+      <Variable x:TypeArguments="x:String" Default="ПРОТОКОЛ" Name="str_sheet" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_Config(&quot;InFolder&quot;).ToString()]" sap:VirtualizedContainerService.HintSize="606.4,1671.2" sap2010:WorkflowViewState.IdRef="ForEachFileX_2" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-      <ui:ForEachFileX.Body>
-        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-          <ActivityAction.Argument1>
-            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
-          </ActivityAction.Argument1>
-          <ActivityAction.Argument2>
-            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-          </ActivityAction.Argument2>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="572.8,1408" sap2010:WorkflowViewState.IdRef="Sequence_4">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[file.Name.ToLower().Contains(&quot;шаблон&quot;)]" sap:VirtualizedContainerService.HintSize="510.4,1296" sap2010:WorkflowViewState.IdRef="If_1">
-              <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="476.8,1112.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="str_sheet">
-                      <Variable.Default>
-                        <Literal x:TypeArguments="x:String">ПРОТОКОЛ</Literal>
-                      </Variable.Default>
-                    </Variable>
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Get template path in result file" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[str_path]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("ResultFolder").ToString(), "Template (" + DateTime.Now.ToString("ddMMyyyy HHmmss") + ").xlsx")]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                  <ui:CopyFile ContinueOnError="{x:Null}" Destination="[str_path]" DisplayName="Copy templates to result" sap:VirtualizedContainerService.HintSize="433.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[file.ToString().Replace(&quot;~$&quot;, &quot;&quot;)]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CopyFile>
-                  <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_haveNotInFirst]" DisplayName="Remove position column in in_dt_haveNotInFirst" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:RemoveDataColumn>
-                  <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_haveNotInSecond]" DisplayName="Remove position column in in_dt_haveNotInSecond" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:RemoveDataColumn>
-                  <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_disagreementAmount]" DisplayName="Remove position column in in_dt_disagreement_amount" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:RemoveDataColumn>
-                  <ui:WriteRange AddHeaders="False" DataTable="[in_dt_haveNotInFirst]" DisplayName="Write in_dt_haveNotInFirst to templates" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + int_start.ToString()]" WorkbookPath="[str_path]" />
-                  <ui:WriteRange AddHeaders="False" DataTable="[in_dt_haveNotInSecond]" DisplayName="Write in_dt_haveNotInSecond to templates" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + (int_start + in_dt_haveNotInFirst.Rows.Count).ToString()]" WorkbookPath="[str_path]" />
-                  <ui:WriteRange AddHeaders="False" DataTable="[in_dt_disagreementAmount]" DisplayName="Write in_st_disagreement_amount" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + (int_start + in_dt_haveNotInFirst.Rows.Count + in_dt_haveNotInSecond.Rows.Count).ToString()]" WorkbookPath="[str_path]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6" />
-              </If.Else>
-            </If>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachFileX.Body>
-    </ui:ForEachFileX>
+    <Assign DisplayName="Get template path in result file" sap:VirtualizedContainerService.HintSize="433.6,81.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_path]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("ResultFolder").ToString(), "Template (" + DateTime.Now.ToString("ddMMyyyy HHmmss") + ").xlsx")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_file]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(in_Config("TempFolder").ToString(), "*Шаблон*.xlsx") _
+	.Where(Function(path) path.Contains("~$") = False).FirstOrDefault()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[str_path]" DisplayName="Copy templates to result" sap:VirtualizedContainerService.HintSize="433.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[str_file]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CopyFile>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_haveNotInFirst]" DisplayName="Remove position column in in_dt_haveNotInFirst" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataColumn>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_haveNotInSecond]" DisplayName="Remove position column in in_dt_haveNotInSecond" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataColumn>
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="position" DataTable="[in_dt_disagreementAmount]" DisplayName="Remove position column in in_dt_disagreement_amount" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RemoveDataColumn>
+    <ui:WriteRange AddHeaders="False" DataTable="[in_dt_haveNotInFirst]" DisplayName="Write in_dt_haveNotInFirst to templates" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + in_int_startDataInTemplate.ToString()]" WorkbookPath="[str_path]" />
+    <ui:WriteRange AddHeaders="False" DataTable="[in_dt_haveNotInSecond]" DisplayName="Write in_dt_haveNotInSecond to templates" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + (in_int_startDataInTemplate + in_dt_haveNotInFirst.Rows.Count).ToString()]" WorkbookPath="[str_path]" />
+    <ui:WriteRange AddHeaders="False" DataTable="[in_dt_disagreementAmount]" DisplayName="Write in_st_disagreement_amount" sap:VirtualizedContainerService.HintSize="433.6,116" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[str_sheet]" StartingCell="[&quot;A&quot; + (in_int_startDataInTemplate + in_dt_haveNotInFirst.Rows.Count + in_dt_haveNotInSecond.Rows.Count).ToString()]" WorkbookPath="[str_path]" />
   </Sequence>
 </Activity>
