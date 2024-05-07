@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,1939.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,1940.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Linq_WorkWithDataTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -124,7 +124,7 @@
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="496,1874.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="496,1876" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInFirst" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInSecond" />
@@ -157,10 +157,10 @@
 	.Select(Function(row) io_dt_template.Rows.Add( _
 																										in_dt_first.Rows.IndexOf(row) + in_startDataInFirst, _
 																										io_dt_template.Rows.Count.ToString, _
-																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
-																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
-																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
-																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																										Regex.Match(row("Документ - Сказка").ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																										Regex.Match(row("Документ - Сказка").ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
+																										If(String.IsNullOrEmpty(row("Дебет - Сказка").ToString()), "0", row("Дебет - Сказка").ToString()), _
+																										If(String.IsNullOrEmpty(row("Кредит - Сказка").ToString()), "0", row("Кредит - Сказка").ToString()), _
 																									    "", "", "", _
 																										"объект не был найден в другом документе")) _
 	.CopyToDataTable()]</InArgument>
@@ -182,10 +182,10 @@
 	.Select(Function(row) io_dt_template.Rows.Add( _
 																										in_dt_second.Rows.IndexOf(row) + in_startDataInSecond, _
 																										io_dt_template.Rows.Count.ToString(), _
-																										Regex.Match(row(1).ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
-																										Regex.Match(row(1).ToString().Trim(), "(?&lt;=\s)\d{2}.\d{2}.\d{4}").Value, _
-																										If(String.IsNullOrEmpty(row(2).ToString()), "0", row(2).ToString()), _
-																										If(String.IsNullOrEmpty(row(3).ToString()), "0", row(3).ToString()), _
+																										Regex.Match(row("Номер документа").ToString().Trim(), "((?&lt;=СФ1-)|(^)|(?&lt;=Т0000)|(?&lt;=\()|(?&lt;=BGK)|(?&lt;=№))\d+").Value, _
+																										Regex.Match(row("Дата документа").ToString().Trim(), "\d{2}.\d{2}.\d{4}").Value, _
+																										If(String.IsNullOrEmpty(row("Дебет - Ромашка").ToString()), "0", row("Дебет - Ромашка").ToString()), _
+																										If(String.IsNullOrEmpty(row("Кредит - Ромашка").ToString()), "0", row("Кредит - Ромашка").ToString()), _
 																									    "", "", "", _
 																										"объект не был найден в другом документе")) _
 	.CopyToDataTable()]</InArgument>
@@ -250,7 +250,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RemoveDataRow>
-    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_processing_fail]</OutArgument>
       </Assign.To>
@@ -303,27 +303,13 @@ Where row_1("Документ - Сказка").ToString().Contains("Коррек
     </ui:CopyFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_processing_fail" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_disagreementAmountForFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
-          <Literal x:TypeArguments="x:String">First</Literal>
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_path">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_path" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingFirst">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_str_paintingInFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingSecond">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_str_paintingInSecond" />
-        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[dt_processing_fail]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForFirst]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInFirst]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">First</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_path">[str_path]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingFirst">[in_str_paintingInFirst]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingSecond">[in_str_paintingInSecond]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
@@ -339,21 +325,11 @@ Where row_1("Документ - Сказка").ToString().Contains("Коррек
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Adding data" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Excel\Excel_fillingInTemplate.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInFirst">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInSecond">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_IsHaveNotInSecond" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_disagreementAmount">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_disagreementAmountForFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="in_int_startDataInTemplate" />
-        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInFirst">[dt_IsHaveNotInFirst]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_haveNotInSecond">[dt_IsHaveNotInSecond]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_disagreementAmount">[dt_disagreementAmountForFirst]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">[in_int_startDataInTemplate]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

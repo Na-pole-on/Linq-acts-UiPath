@@ -268,69 +268,33 @@
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting data from the second sheet" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcelSecondSheet.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-        </InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">
-          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_second" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
-          <Literal x:TypeArguments="x:String">Second</Literal>
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">[dt_second]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="BreakTriggerScopeInArgument" />
-        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">
-          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="int_startDataInSecond" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_str_paintingInSecond">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_paintingInSecond" />
-        </OutArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">[int_startDataInSecond]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_str_paintingInSecond">[str_paintingInSecond]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting a template" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Linq\Linq_GetTemplatesTable.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-        </InArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">
-          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_template" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">
-          <Literal x:TypeArguments="x:String">ПРОТОКОЛ</Literal>
-        </InArgument>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">
-          <VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="int_startDataInTemplate" />
-        </OutArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_dtExcel">[dt_template]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">ПРОТОКОЛ</InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_int_startData">[int_startDataInTemplate]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Receiving and entering data" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithDataTable.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-          <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_first">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_first" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_second">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dt_second" />
-        </InArgument>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_template">
-          <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_template" />
-        </InOutArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInFirst">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInSecond">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInSecond" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_startDataInTemplate" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInFirst">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_paintingInFirst" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInSecond">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_paintingInSecond" />
-        </InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_first">[dt_first]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_second">[dt_second]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_template">[dt_template]</InOutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInFirst">[int_startDataInFirst]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_startDataInSecond">[int_startDataInSecond]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_int_startDataInTemplate">[int_startDataInTemplate]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInFirst">[str_paintingInFirst]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_str_paintingInSecond">[str_paintingInSecond]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting the result data and entering it" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Project\CloseAllApplications.xaml">
