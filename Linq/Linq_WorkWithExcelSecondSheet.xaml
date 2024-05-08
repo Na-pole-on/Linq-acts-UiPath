@@ -10,7 +10,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,3345.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,3802.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Linq_WorkWithExcelSecondSheet_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -119,7 +119,7 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Linq_WorkWithExcelSecondSheet" sap:VirtualizedContainerService.HintSize="649.6,3280.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Linq_WorkWithExcelSecondSheet" sap:VirtualizedContainerService.HintSize="649.6,3737.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_result" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_excelFile" />
@@ -148,7 +148,7 @@
         <InArgument x:TypeArguments="x:Int32">[dt_excelFile.Columns.Count - 1]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InterruptibleWhile CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Search for the desired column where there is a date" Condition="[i &gt;= 0]" DisplayName="While" sap:VirtualizedContainerService.HintSize="587.2,96.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+    <ui:InterruptibleWhile CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Search for the desired column where there is a date" Condition="[i &gt;= 0]" DisplayName="While" sap:VirtualizedContainerService.HintSize="587.2,553.6" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
       <ui:InterruptibleWhile.Body>
         <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476.8,385.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
@@ -216,7 +216,7 @@
       </ui:InterruptibleWhile.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>

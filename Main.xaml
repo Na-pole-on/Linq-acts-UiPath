@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="860,1613.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="860,1950.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ufa="clr-namespace:UiPath.Forms.Activities;assembly=UiPath.Forms.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -127,26 +127,28 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="496,1548.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="496,1885.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="Config" />
       <Variable x:TypeArguments="x:String" Name="str_result" />
       <Variable x:TypeArguments="x:Boolean" Name="bool_NextStep" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_first" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_second" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="list_actFiles" />
+      <Variable x:TypeArguments="x:String" Name="str_actFile" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_template" />
       <Variable x:TypeArguments="x:Int32" Name="int_startDataInFirst" />
       <Variable x:TypeArguments="x:Int32" Name="int_startDataInSecond" />
       <Variable x:TypeArguments="x:Int32" Name="int_startDataInTemplate" />
       <Variable x:TypeArguments="x:String" Name="str_paintingInSecond" />
       <Variable x:TypeArguments="x:String" Name="str_paintingInFirst" />
+      <Variable x:TypeArguments="x:String" Name="str_templateFile" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
+    <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="433.6,80.8" sap2010:WorkflowViewState.IdRef="DeleteFolderX_1" Path="Temp" Recursive="True" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Initialization of the project" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Project\InitAllSettings.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">Data\Config.xlsx</InArgument>
@@ -219,43 +221,38 @@
     </If>
     <Assign DisplayName="Getting files from In " sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
-        <OutArgument x:TypeArguments="scg:List(x:String)">[list_actFiles]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[str_actFile]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="scg:List(x:String)" xml:space="preserve">[Directory.GetFiles(Config("InFolder").ToString(), "*Акты*.xlsx") _
-.Where(Function(str_path) str_path.Contains("~$") = False).ToList()]</InArgument>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(Config("InFolder").ToString(), "*Акты*.xlsx") _
+.Where(Function(str_path) str_path.Contains("~$") = False).ToList().FirstOrDefault()]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_actFiles]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="x:String">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:String" Name="file" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376.8,244.8" sap2010:WorkflowViewState.IdRef="Sequence_19">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:CopyFile ContinueOnError="True" Destination="[Path.Combine(Environment.CurrentDirectory, Config(&quot;TempFolder&quot;).ToString())]" DisplayName="Copy Acts to Temp" sap:VirtualizedContainerService.HintSize="333.6,155.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[file]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:CopyFile>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
+    <Assign sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[str_templateFile]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(Config("InFolder").ToString(), "*Шаблон*.xlsx") _
+.Where(Function(str_path) str_path.Contains("~$") = False).ToList().FirstOrDefault()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CopyFile ContinueOnError="True" Destination="[Path.Combine(Environment.CurrentDirectory, Config(&quot;TempFolder&quot;).ToString())]" DisplayName="Copy Acts to Temp" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[str_actFile]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-    </ui:ForEach>
+    </ui:CopyFile>
+    <ui:CopyFile ContinueOnError="True" Destination="[Path.Combine(Environment.CurrentDirectory, Config(&quot;TempFolder&quot;).ToString())]" DisplayName="Copy Acts to Temp" sap:VirtualizedContainerService.HintSize="433.6,52.8" sap2010:WorkflowViewState.IdRef="CopyFile_2" Overwrite="True" Path="[str_templateFile]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CopyFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Getting data from the first sheet" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Linq\Linq_WorkWithExcelFirstSheet.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>

@@ -13,7 +13,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>860,1940.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>860,1939.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Linq_WorkWithDataTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -122,9 +122,13 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="496,1876" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Linq_WorkWithDataTable" sap:VirtualizedContainerService.HintSize="496,1874.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInFirst" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_IsHaveNotInSecond" />
@@ -250,7 +254,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:RemoveDataRow>
-    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="433.6,84.8" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Receipt of acts that have not been processed" sap:VirtualizedContainerService.HintSize="433.6,83.2" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="sd:DataTable">[dt_processing_fail]</OutArgument>
       </Assign.To>
@@ -289,7 +293,7 @@ Where row_1("Документ - Сказка").ToString().Contains("Коррек
         <OutArgument x:TypeArguments="x:String">[str_file]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(in_Config("TempFolder").ToString(), "*Шаблон*.xlsx") _
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[Directory.GetFiles(in_Config("TempFolder").ToString(), "*Акты*.xlsx") _
 	.Where(Function(path) path.Contains("~$") = False).FirstOrDefault()]</InArgument>
       </Assign.Value>
     </Assign>
@@ -314,7 +318,7 @@ Where row_1("Документ - Сказка").ToString().Contains("Коррек
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Excel\Excel_PaintCell.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Excel\Excel_PaintCell.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[Nothing]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toGray">[dt_processing_fail]</InArgument>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toYellow">[dt_disagreementAmountForSecond]</InArgument>
         <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_toRed">[dt_IsHaveNotInSecond]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_str_sheet">Second</InArgument>
